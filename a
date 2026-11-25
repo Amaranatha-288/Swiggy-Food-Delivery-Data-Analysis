@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Visitors Count </title>
+</head>
+
+<body bgcolor = "#99CC99">
+
+<div style="position:absolute; top: 200px; left: 100px;
+            font-size:25pt; font-family: 'Trebuchet MS';">
+
+<?php
+    if($handle=@fopen("counter.txt","r"))
+    {
+        $counter=fscanf($handle,"%d");
+        fclose($handle);
+
+        $counter[0]++;
+
+        echo" This is the program to keep track the number of visits for this webpage";
+
+        echo" <br /><br /> This Page is visited   ". $counter[0] . "   Times" ;
+
+        $handle= fopen("counter.txt", "w" );
+
+        fprintf($handle,"%d",$counter[0]);
+
+        fclose ($handle);
+    }
+
+    elseif($handle = fopen("counter.txt", "w"))
+    {
+        echo "Welcome to this Website <br /> This is your First Visit";
+
+        fprintf($handle,"%d",1);
+
+        fclose($handle);
+    }
+?>
+
+</div>
+
+<h1> Welcome to CSE </h1>
+
+</body>
+</html>
